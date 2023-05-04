@@ -25,7 +25,7 @@ If you want to try to solve the lab by yourself there you got some useful inform
 
 - You can open a virtual browser on the attacker container by reaching [`http://localhost:3000`](http://localhost:3000)
 - You can open a shell on the attacker container
-- The web server is available at `[http://webserver](http://webserver)` and is only accessible within the intranet, you can use the attacker browser to reach it
+- The web server is available at [`http://webserver`](http://webserver) and is only accessible within the intranet, you can use the attacker browser to reach it
 - The victim mail client is available at [`http://victim_mail`](http://victim_mail) and is only accessible within the intranet, you can use the attacker browser to reach it
 
 # Solution
