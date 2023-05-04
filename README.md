@@ -1,5 +1,3 @@
-# Documentazione
-
 # Goal
 
 The aim of the lab is to exploit the misconfiguration of some web servers that allow an attacker to send a valid reset password email containing a malicious link.
