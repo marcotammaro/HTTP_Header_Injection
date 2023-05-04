@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en" data-bs-theme="auto">
+
+<head>
+    <title>HTTP Header Injection</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="../static/styles/bootstrap.min.css" rel="stylesheet">
+    <link href="../static/styles/sign-in.css" rel="stylesheet">
+</head>
+
+<body class="text-center">
+    <main class="form-signin w-200 m-auto">
+        <img class="mb-4" src="../static/img/logo.png" alt="" width="200">
+
+        <h1 class="h5 mb-3 fw-normal">Please sign in</h1>
+
+        <form action="" method="post">
+            <div class="form-floating">
+                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" name="email"
+                    value="{{request.form.email}}">
+                <label for="floatingInput">Email</label>
+            </div>
+            <div class="form-floating">
+                <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password"
+                    value="{{request.form.password}}">
+                <label for="floatingPassword">Password</label>
+            </div>
+            <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+        </form>
+        <br>
+        <form action="resetpassword" method="get">
+            <button class="btn btn-link rounded-pill px-3" type="submit">Forgot Password</button>
+        </form>
+
+        {% if error %}
+        <div style="position: relative; width: 200; height: 200px;">
+            <div style="position: absolute; bottom: 5px">
+                <div class="alert alert-danger fade show" role="alert">
+                    {{ error }}
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+    </main>
+
+</body>
+
+</html>

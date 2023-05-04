@@ -1,0 +1,56 @@
+version: '3'
+services:
+
+  webserver:
+    container_name: webserver
+    restart: unless-stopped
+    build:
+      context: ./webserver
+      dockerfile: Dockerfile
+    environment:
+      - FLASK_DEBUG
+      - FLASK_APP
+      - APP_SETTINGS
+    networks:
+      internal_network:
+        ipv4_address: 192.168.1.11
+
+  victim_mail:
+    container_name: victim_mail
+    restart: unless-stopped
+    build:
+      context: ./mailcatcher
+      dockerfile: Dockerfile
+    environment:
+      - TIMEZONE=${TZ}
+    networks:
+      internal_network:
+        ipv4_address: 192.168.1.12
+
+  attacker:
+    container_name: attacker
+    restart: unless-stopped
+    build:
+      context: ./firefox
+      dockerfile: Dockerfile
+    environment:
+      - PUID
+      - PGID
+      - TZ
+    ports:
+      - 3000:3000 # http
+      - 3001:3001 # https
+    shm_size: "1gb"
+    networks:
+      internal_network:
+        ipv4_address: 192.168.1.13
+
+networks:
+  internal_network:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 192.168.1.0/24
+          gateway: 192.168.1.1
+          ip_range: 192.168.1.10/28
